@@ -1,4 +1,5 @@
 from datetime import date, timedelta
+import pandas as pd
 
 def get_day_cases(end_date=date.today()):
     """
