@@ -1,3 +1,5 @@
+from datetime import date, timedelta
+
 def get_day_cases(end_date=date.today()):
     """
     Gets day-by-day case numbers.
