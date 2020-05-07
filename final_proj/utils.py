@@ -12,7 +12,6 @@ def get_day_cases(end_date=date.today()):
     num_days = (end_date - START_DATE).days
     dfs = []
     for i in range(num_days):
-        print(i)
         year, mo, day = (START_DATE + timedelta(days=i)).isoformat().split('-')
         file_name = '{0}-{1}-{2}.csv'.format(mo, day, year)
         dfs.append(pd.read_csv(GIT_REPO_PATH + file_name, error_bad_lines=False))
