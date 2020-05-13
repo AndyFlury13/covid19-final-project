@@ -21,4 +21,5 @@ def get_day_cases(end_date=date.today()):
         banned_territories = ['Diamond Princess', 'District of Columbia', 'Grand Princess', 'Guam', 'American Samoa',
                               'Northern Mariana Islands', 'Recovered', 'Virgin Islands', 'Puerto Rico']
         dfs[day] = dfs[day][~dfs[day]['Province_State'].isin(banned_territories)].reset_index().drop(columns=['index'])
+        dfs[day]['Recovered'] = dfs[day]['Confirmed'] = dfs[day]['Active']
     return dfs
