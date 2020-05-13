@@ -16,4 +16,9 @@ def get_day_cases(end_date=date.today()):
         year, mo, day = (START_DATE + timedelta(days=i)).isoformat().split('-')
         file_name = '{0}-{1}-{2}.csv'.format(mo, day, year)
         dfs.append(pd.read_csv(GIT_REPO_PATH + file_name, error_bad_lines=False))
+    for day in range(len(dfs)):
+        dfs[day] = dfs[day][dfs[day]['Country_Region'] == 'US']
+        banned_territories = ['Diamond Princess', 'District of Columbia', 'Grand Princess', 'Guam', 'American Samoa',
+                              'Northern Mariana Islands', 'Recovered', 'Virgin Islands', 'Puerto Rico']
+        dfs[day] = dfs[day][~dfs[day]['Province_State'].isin(banned_territories)].reset_index().drop(columns=['index'])
     return dfs
